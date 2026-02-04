@@ -20,10 +20,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             WarCardGameComposeTheme(dynamicColor = false) {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+
                 }
             }
         }

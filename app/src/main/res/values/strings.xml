@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">warCardGameCompose</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="register">Register</string>
+    <string name="guest">Guest</string>
+    <string name="logo">Logo</string>
+
+
 </resources>
