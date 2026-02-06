@@ -1,5 +1,4 @@
 package com.example.warcardgamecompose
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -24,19 +23,24 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.warcardgamecompose.ui.theme.Black
+import com.example.warcardgamecompose.ui.theme.ShootingStar
 import com.example.warcardgamecompose.ui.theme.WarCardGameComposeTheme
+import com.example.warcardgamecompose.ui.theme.White
 import com.example.warcardgamecompose.ui.theme.components.CartoonBox
-import com.example.warcardgamecompose.ui.theme.components.CartoonTextField
+import com.example.warcardgamecompose.ui.theme.components.StrokeText
 
 @Composable
-fun RegisterScreen(state: LoginUiState,
-                   onUsernameChange: (String) -> Unit,
-                   onEmailChange: (String) -> Unit,
-                   onPasswordChange: (String) -> Unit,
-                   onRegisterButtonClick: () -> Unit,
-                   onExitButtonClick: () -> Unit
+fun ChooseGameModeScreen(
+    onPvpButtonClick: () -> Unit,
+    onCPUButtonClick: () -> Unit, 
+    onMultiplayerButtonClick: () -> Unit,
+    onExitButtonClick: () -> Unit
 
-                   ) {
+
+) {
+
 
     Surface(
         Modifier.fillMaxSize()
@@ -63,7 +67,8 @@ fun RegisterScreen(state: LoginUiState,
 
 
             Column(
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
                     .padding(16.dp),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -72,63 +77,52 @@ fun RegisterScreen(state: LoginUiState,
                 Spacer(modifier = Modifier.height(80.dp))
 
 
+                StrokeText(text = stringResource(R.string.welcome), fontSize = 50.sp, fontFamily = ShootingStar, fillColor = White, strokeColor = Black)
+
+
                 Image(
-                    painter = painterResource(R.drawable.logo),
+                    painter = painterResource(R.drawable.skater),
                     contentDescription = stringResource(R.string.logo),
                     modifier = Modifier
-                        .height(100.dp)
+                        .height(80.dp)
                         .padding(horizontal = 16.dp),
                     contentScale = ContentScale.FillHeight
                 )
 
-                Spacer(modifier = Modifier.height(60.dp))
-
-
-                CartoonTextField(
-                    value = state.username, onValueChange = onUsernameChange,
-                    placeholder = stringResource(R.string.username),
-                    isPassword = false,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 24.dp)
-                )
-
-                Spacer(modifier = Modifier.height(20.dp))
-
-                CartoonTextField(
-                    value = state.email, onValueChange = onEmailChange,
-                    placeholder = stringResource(R.string.email),
-                    isPassword = false,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 24.dp)
-                )
-
-                Spacer(modifier = Modifier.height(20.dp))
-
-                CartoonTextField(
-                    value = state.password, onValueChange = onPasswordChange,
-                    placeholder = stringResource(R.string.password),
-                    isPassword = true,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 24.dp)
-                )
+                StrokeText(text = stringResource(R.string.username), fontSize = 18.sp, fontFamily = ShootingStar, fillColor = White, strokeColor = Black)
 
                 Spacer(modifier = Modifier.height(40.dp))
 
-                CartoonBox("REGISTER", onClick = { onRegisterButtonClick() })
+                StrokeText(text = stringResource(R.string.please_choose_your_game_mode), fontSize = 18.sp, fontFamily = ShootingStar, fillColor = White, strokeColor = Black)
+
+
+
+
+
+
+
+                Spacer(modifier = Modifier.height(10.dp))
+
+                CartoonBox("PvP", onClick = { onPvpButtonClick() })
+                Spacer(modifier = Modifier.height(16.dp))
+
+                CartoonBox("CPU", onClick = { onCPUButtonClick() })
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                CartoonBox("Multiplayer", onClick = { onMultiplayerButtonClick() })
 
 
             }
         }
 
     }
+
 }
 
 @Preview(showBackground = true,)
 @Composable
-fun RegisterScreenPreview(
+fun ChooseGameModePreview(
 
 ) {
 
@@ -136,17 +130,12 @@ fun RegisterScreenPreview(
         darkTheme = false,
         dynamicColor = false
     ) {
-        RegisterScreen(state = LoginUiState(
-            email = "test@test.com",
-            password = "password",
-            username = "aujiva"
+        ChooseGameModeScreen(
+            onExitButtonClick = {},
+            onCPUButtonClick = {},
+            onPvpButtonClick = {},
+            onMultiplayerButtonClick = {},
 
-        ),
-            onUsernameChange = {},
-            onEmailChange = {},
-            onPasswordChange = {},
-            onRegisterButtonClick = {},
-            onExitButtonClick = {}
-            )
+        )
     }
 }
