@@ -3,6 +3,11 @@ This project is an Android implementation of the classic card game **War**. I or
 Android development project, and now that my skills have grown, I am rebuilding it with a stronger focus on clean architecture,
 and modern Android practices, and scalability. 
 
+**You can look at my developer branch for the latest app updates.**
+
+## App-Design
+The initial app design was made using Figma: 
+<img width="4885" height="3788" alt="War Card Game_Design" src="https://github.com/user-attachments/assets/e08e5d26-a059-4e46-a451-d53cfa260ef9" />
 The goal of the new version is to improve: 
 - Application architecture with proper MVVM principles
 - Coroutine usage for asynchronous operation
@@ -31,9 +36,7 @@ The goal of the new version is to improve:
 -  Improved MVVM structure
 -  Navigating with Navigation3
 - 
-## App-Design
-The initial app design was made using Figma: 
-<img width="4885" height="3788" alt="War Card Game_Design" src="https://github.com/user-attachments/assets/e08e5d26-a059-4e46-a451-d53cfa260ef9" />
+
 
 ## Tech Stack
 - Kotlin
