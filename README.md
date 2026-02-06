@@ -39,6 +39,8 @@ The goal of the new version is to improve:
 
 
 ## Tech Stack
+- Firebase Auth
+- Firebase Cloud Firestore
 - Kotlin
 - Android SDK
 - MVVM architecture
