@@ -5,14 +5,18 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
@@ -27,6 +31,11 @@ fun CartoonTextField(
     isPassword: Boolean = false,
     modifier: Modifier = Modifier
 ) {
+
+    val baseTextStyle = MaterialTheme.typography.bodyMedium.copy(
+        color = Color.Black,
+        letterSpacing = 1.sp
+    )
     Box(
         modifier = modifier
     ) {
@@ -52,30 +61,43 @@ fun CartoonTextField(
                     color = Color.Black,
                     shape = RoundedCornerShape(6.dp)
                 )
-                .padding(horizontal = 16.dp, vertical = 20.dp)
+
         ) {
-            BasicTextField(
+            OutlinedTextField(modifier  = Modifier.fillMaxWidth(),
                 value = value,
                 onValueChange = onValueChange,
                 singleLine = true,
-                visualTransformation = if (isPassword) PasswordVisualTransformation()
-                else VisualTransformation.None,
-                textStyle = TextStyle(
-                    color = Color.Black,
-                    fontSize = 16.sp,
-                    letterSpacing = 1.sp
-                ),
-                decorationBox = { innerTextField ->
-                    if (value.isEmpty()) {
-                        Text(
-                            text = placeholder.uppercase(),
-                            color = Color.Gray,
-                            fontSize = 16.sp,
-                            letterSpacing = 1.sp
-                        )
+                trailingIcon = {
+                    if (value.isNotEmpty()) {
+                        IconButton(onClick = { onValueChange("") }) {
+                            Icon(
+                                imageVector = Icons.Default.Clear,
+                                contentDescription = "Clear"
+                            )
+                        }
                     }
-                    innerTextField()
-                }
+                },
+                placeholder = {
+                    Text(
+                        text = placeholder.uppercase(),
+                        style = baseTextStyle.copy(color = Color.Gray)
+                    )
+                },
+                visualTransformation = if (isPassword)
+                    PasswordVisualTransformation()
+                else
+                    VisualTransformation.None,
+                textStyle = baseTextStyle,
+                colors = TextFieldDefaults.colors(
+                    focusedTextColor = Color.Black,
+                    unfocusedTextColor = Color.Black,
+                    cursorColor = Color.Black,
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent
+                )
+
+
+
             )
         }
     }

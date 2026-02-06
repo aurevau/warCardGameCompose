@@ -33,8 +33,8 @@ fun LoginScreen(state: LoginUiState,
 
     Surface() {
     Column(modifier = Modifier
-        .fillMaxSize()
         .background(MaterialTheme.colorScheme.background)
+        .fillMaxSize()
         .padding(16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally) {

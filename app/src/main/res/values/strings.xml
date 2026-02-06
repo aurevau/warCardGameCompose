@@ -6,6 +6,8 @@
     <string name="register">Register</string>
     <string name="guest">Guest</string>
     <string name="logo">Logo</string>
+    <string name="username">Username</string>
+    <string name="exit_button">Exit Button</string>
 
 
 </resources>
