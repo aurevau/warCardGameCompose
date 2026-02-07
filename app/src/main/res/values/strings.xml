@@ -10,6 +10,8 @@
     <string name="exit_button">Exit Button</string>
     <string name="please_choose_your_game_mode">Please choose your game mode:</string>
     <string name="welcome">Welcome</string>
+    <string name="right_card">Right Card</string>
+    <string name="left_card">Left Card</string>
 
 
 </resources>
