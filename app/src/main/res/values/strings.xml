@@ -12,6 +12,7 @@
     <string name="welcome">Welcome</string>
     <string name="right_card">Right Card</string>
     <string name="left_card">Left Card</string>
+    <string name="opponent_profile_picture">Opponent Profile Picture</string>
 
 
 </resources>

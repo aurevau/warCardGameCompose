@@ -17,7 +17,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -43,11 +42,12 @@ import com.example.warcardgamecompose.ui.theme.components.StrokeText
 
 @Composable
 fun CPUGameScreen(
-    onDealButtonClick: () -> Unit
+    onDealButtonClick: () -> Unit,
+    onExitButtonClick: () -> Unit
 ) {
 
-    var leftCard by remember { mutableStateOf(R.drawable.back_card) }
-    var rightCard by remember { mutableStateOf(R.drawable.back_card) }
+    var opponentCard by remember { mutableStateOf(R.drawable.back_card) }
+    var playerCard by remember { mutableStateOf(R.drawable.back_card) }
 
     var playerScore by rememberSaveable { mutableStateOf(0) }
     var opponentScore by rememberSaveable { mutableIntStateOf(0) }
@@ -62,7 +62,7 @@ fun CPUGameScreen(
             .padding(16.dp)) {
 
             IconButton(onClick = {
-
+                onExitButtonClick()
             }, modifier = Modifier.align(Alignment.TopEnd)) {
                 Icon(painter = painterResource(R.drawable.exitbutton),
                 contentDescription = stringResource(R.string.exit_button),
@@ -89,7 +89,7 @@ fun CPUGameScreen(
                 Row(modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically) {
-                    Image(painter = painterResource(leftCard),
+                    Image(painter = painterResource(opponentCard),
                         modifier = Modifier
                             .align(Alignment.CenterVertically)
                             .height(200.dp),
@@ -98,7 +98,7 @@ fun CPUGameScreen(
                     )
 
                     Spacer(modifier = Modifier.width(20.dp))
-                    Image(painter = painterResource(rightCard),
+                    Image(painter = painterResource(playerCard),
                         modifier = Modifier
                             .align(Alignment.CenterVertically)
                             .height(200.dp),
@@ -158,7 +158,8 @@ fun CPUGameScreenPreview() {
         dynamicColor = false
     ) {
         CPUGameScreen(
-            onDealButtonClick = {}
+            onDealButtonClick = {},
+            onExitButtonClick = {}
         )
     }
 }

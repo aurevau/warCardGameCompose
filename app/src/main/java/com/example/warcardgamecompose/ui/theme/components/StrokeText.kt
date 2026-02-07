@@ -2,6 +2,7 @@ package com.example.warcardgamecompose.ui.theme.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,8 +21,10 @@ fun StrokeText(
     fontFamily: FontFamily,
     fillColor: Color,
     strokeColor: Color,
-    strokeWidth: Dp = 1.dp
+    strokeWidth: Dp = 1.dp,
+    modifier: Modifier = Modifier
 ) {
+
     val offsets = listOf(
         Offset(-1f, -1f),
         Offset(0f, -1f),
@@ -33,7 +36,9 @@ fun StrokeText(
         Offset(1f, 1f)
     )
 
-    Box(contentAlignment = Alignment.Center) {
+    Box(contentAlignment = Alignment.Center,
+        modifier = modifier.wrapContentSize()
+    ) {
 
         offsets.forEach { offset ->
             Text(
