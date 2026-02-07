@@ -118,7 +118,7 @@ fun CPUGameScreen(
                 Spacer(modifier = Modifier.height(50.dp))
 
 
-                CartoonBox("DEAL", onClick = { onDealButtonClick() })
+                CartoonBox("DEAL", onClick = { onDealButtonClick() }, modifier = Modifier.width(200.dp))
 
                 Spacer(modifier = Modifier.height(60.dp))
 

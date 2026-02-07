@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -122,7 +123,7 @@ fun MultiplayerGameScreen(
                         Spacer(Modifier.weight(0.5f))
 
 
-                        CartoonBox("DEAL", onClick = { onDealButtonClick() })
+                        CartoonBox("DEAL", onClick = { onDealButtonClick() }, modifier = Modifier.width(200.dp))
                         Spacer(Modifier.height(10.dp))
 
                     StrokeText(playerUsername, fontSize = 18.sp, fontFamily = ShootingStar, fillColor = White, strokeColor = Black)
