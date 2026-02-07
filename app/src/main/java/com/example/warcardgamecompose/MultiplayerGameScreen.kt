@@ -2,10 +2,8 @@ package com.example.warcardgamecompose
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -41,7 +39,7 @@ import com.example.warcardgamecompose.ui.theme.components.CartoonBox
 import com.example.warcardgamecompose.ui.theme.components.StrokeText
 
 @Composable
-fun PvPGameScreen(
+fun MultiplayerGameScreen(
     onDealButtonClick: () -> Unit,
     onExitButtonClick: () -> Unit
 ) {
@@ -155,13 +153,13 @@ fun PvPGameScreen(
 
 @Preview(showBackground = true)
 @Composable
-fun PvPGameScreenPreview() {
+fun MultiplayerGameScreenPreview() {
     WarCardGameComposeTheme(
         darkTheme = false,
         dynamicColor = false
     ) {
 
-        PvPGameScreen(
+        MultiplayerGameScreen(
             onExitButtonClick = {},
             onDealButtonClick = {}
         )
