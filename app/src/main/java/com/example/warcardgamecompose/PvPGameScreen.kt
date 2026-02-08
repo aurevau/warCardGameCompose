@@ -1,9 +1,7 @@
 package com.example.warcardgamecompose
 
-import android.view.Surface
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -61,7 +59,7 @@ fun PvPGameScreen(
     var playerScore by rememberSaveable { mutableStateOf(0) }
     var opponentScore by rememberSaveable { mutableIntStateOf(0) }
 
-    Surface(modifier = Modifier.fillMaxSize()) {
+    Surface(modifier = Modifier.fillMaxWidth()) {
         Box(modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
@@ -78,7 +76,7 @@ fun PvPGameScreen(
 
             }
 
-            Column(modifier = Modifier.fillMaxWidth(),
+            Column(modifier = Modifier.fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally){
 
 
@@ -88,14 +86,9 @@ fun PvPGameScreen(
                     }, horizontalAlignment = Alignment.CenterHorizontally) {
 
 
-
-
-
-                    Image(painter = painterResource(opponentCard),
-                        contentDescription = stringResource(R.string.left_card),
-                        modifier = Modifier.height(200.dp),
-                        contentScale = ContentScale.FillHeight
-                    )
+                    Spacer(modifier = Modifier.height(30.dp))
+                    CartoonBox("DEAL", onClick = { onOpponentDealButtonClick() }, modifier = Modifier.width(200.dp))
+                    Spacer(modifier = Modifier.height(10.dp))
 
                     StrokeText(
                         text = opponentUsername,
@@ -115,19 +108,37 @@ fun PvPGameScreen(
                         strokeColor = Black
                     )
 
-                    CartoonBox("DEAL", onClick = { onOpponentDealButtonClick() }, modifier = Modifier.width(200.dp).offset(y = (-30.dp)))
-                    Spacer(modifier = Modifier.height(20.dp))
+
                 }
 
-                Spacer(modifier = Modifier.height(20.dp))
+                Box(modifier = Modifier.fillMaxWidth().weight(1f),
+                    contentAlignment = Alignment.Center) {
+
+                    Image(painter = painterResource(opponentCard),
+                        contentDescription = stringResource(R.string.left_card),
+                        modifier = Modifier.height(200.dp)
+                            .offset(x = (-80).dp, y = (-80).dp)
+                            .graphicsLayer{
+                                rotationZ = -180f
+                            },
+                        contentScale = ContentScale.FillHeight
+                    )
 
 
 
-                Image(painter = painterResource(playerCard),
-                    contentDescription = stringResource(R.string.right_card),
-                    modifier = Modifier.height(200.dp),
-                    contentScale = ContentScale.FillHeight
-                )
+
+                    Image(painter = painterResource(playerCard),
+                        contentDescription = stringResource(R.string.right_card),
+                        modifier = Modifier.height(200.dp)
+                            .offset(x = (80).dp, y = (80).dp),
+                        contentScale = ContentScale.FillHeight
+                    )
+                }
+                Spacer(modifier = Modifier.height(30.dp))
+
+
+                CartoonBox("DEAL", onClick = { onPlayerDealButtonClick() }, modifier = Modifier.width(200.dp))
+                Spacer(modifier = Modifier.height(10.dp))
 
                 StrokeText(
                     text = opponentUsername,
@@ -147,7 +158,6 @@ fun PvPGameScreen(
                     strokeColor = Black
                 )
 
-                CartoonBox("DEAL", onClick = { onPlayerDealButtonClick() }, modifier = Modifier.width(200.dp).offset(y = (-30.dp)))
 
 
 
