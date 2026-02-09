@@ -52,8 +52,6 @@ fun NavigationRoot(modifier: Modifier = Modifier) {
         entryProvider = {key ->
             when(key) {
                 is LoginDestination -> NavEntry(key) {
-
-                    val loginViewModel: LoginViewModel = koinViewModel()
                     val state by loginViewModel.uiState.collectAsStateWithLifecycle()
                     LoginScreen(
                         state = state,
