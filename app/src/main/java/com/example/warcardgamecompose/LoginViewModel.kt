@@ -14,7 +14,15 @@ class LoginViewModel: ViewModel() {
         _uiState.update {it.copy(email = email)}
     }
 
+    fun onUsernameChange(username: String) {
+        _uiState.update {it.copy(username = username)}
+    }
+
     fun onPasswordChange(password: String) {
         _uiState.update {it.copy(password = password)}
+    }
+
+    fun reset() {
+        _uiState.value = LoginUiState()
     }
 }

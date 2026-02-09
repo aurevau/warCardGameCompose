@@ -2,6 +2,7 @@ package com.example.warcardgamecompose.ui.theme.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -29,6 +30,7 @@ fun CartoonBox(
     Box(
         modifier = modifier
             .fillMaxWidth()
+            .clickable{onClick()}
             .height(60.dp)
             .padding(horizontal = 20.dp)
 
