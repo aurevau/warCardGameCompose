@@ -42,6 +42,20 @@ class AuthViewModel(private val repository: AuthRepository): ViewModel() {
         }
     }
 
+    fun loginWithGoogle() = viewModelScope.launch {
+        _uiState.value = AuthUiState.Loading
+        val result = repository.loginWithGoogle()
+        if (result?.data != null) {
+            _uiState.value = AuthUiState.LoginSuccess
+            _authStatus.value = AuthStatus.LoggedIn
+
+        } else {
+            AuthUiState.Error(result?.errorMessage ?: "Unknown Error")
+        }
+        _authStatus.value = AuthStatus.LoggedIn
+
+    }
+
     fun logout() {
        repository.logout()
         _authStatus.value = AuthStatus.LoggedOut

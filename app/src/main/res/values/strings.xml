@@ -15,5 +15,8 @@
     <string name="opponent_profile_picture">Opponent Profile Picture</string>
     <string name="unknown_destination">Unknown destination</string>
 
+    <string name="default_web_client_id">33604769143-liq3qfvook6ld210o0l6kvhis09ilvst.apps.googleusercontent.com</string>
+
+
 
 </resources>

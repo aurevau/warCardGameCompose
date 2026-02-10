@@ -60,7 +60,7 @@ fun NavigationRoot(modifier: Modifier = Modifier) {
                         onPasswordChange = loginViewModel::onPasswordChange,
                         onGuestButtonClick = {backStack.addLast(ChooseGameModeScreenDestination)},
                         onRegisterButtonClick = {backStack.addLast(RegisterDestination)},
-                        onGoogleLoginClick = {},
+                        onGoogleLoginClick = {authViewModel.loginWithGoogle()},
                         onFacebookLoginClick = {}
                     )
 

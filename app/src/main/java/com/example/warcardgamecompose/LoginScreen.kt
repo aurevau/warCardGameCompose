@@ -2,6 +2,7 @@ package com.example.warcardgamecompose
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -92,6 +93,7 @@ fun LoginScreen(state: LoginUiState,
                 contentDescription = "Login Icon",
                 modifier = Modifier
                     .weight(0.81f)
+                    .clickable(onClick = {onGoogleLoginClick()})
 
             )
             Spacer(modifier = Modifier.width(10.dp))
@@ -100,6 +102,7 @@ fun LoginScreen(state: LoginUiState,
             Image(painter = painterResource(R.drawable.login_fb),
                 contentDescription = "Login Icon",
                 modifier = Modifier.weight(0.8f)
+                    .clickable(onClick = {onFacebookLoginClick()})
             )
         }
 
