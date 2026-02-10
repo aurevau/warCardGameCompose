@@ -68,6 +68,7 @@ fun LoginScreen(state: LoginUiState,
             isPassword = false,
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(horizontal = 16.dp)
 
 
         )
@@ -81,6 +82,7 @@ fun LoginScreen(state: LoginUiState,
             isPassword = true,
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(horizontal = 16.dp)
         )
 
 
@@ -92,18 +94,17 @@ fun LoginScreen(state: LoginUiState,
             Image(painter = painterResource(R.drawable.login_google),
                 contentDescription = "Login Icon",
                 modifier = Modifier
-                    .weight(0.81f)
+                    .weight(1f)
                     .clickable(onClick = {onGoogleLoginClick()})
 
             )
-            Spacer(modifier = Modifier.width(10.dp))
 
 
-            Image(painter = painterResource(R.drawable.login_fb),
-                contentDescription = "Login Icon",
-                modifier = Modifier.weight(0.8f)
-                    .clickable(onClick = {onFacebookLoginClick()})
-            )
+//            Image(painter = painterResource(R.drawable.login_fb),
+//                contentDescription = "Login Icon",
+//                modifier = Modifier.weight(0.8f)
+//                    .clickable(onClick = {onFacebookLoginClick()})
+//            )
         }
 
 
