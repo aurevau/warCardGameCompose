@@ -8,6 +8,7 @@ and modern Android practices, and scalability.
 **Implemented so far**
 - UI Design for Login and GameScreens.
 - Email & Password login using Firebase Auth.
+- Google Authentication.
 - Navigation with Navigation3. 
 
 ## App-Design
