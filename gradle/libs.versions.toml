@@ -8,6 +8,7 @@ espressoCore = "3.7.0"
 lifecycleRuntimeKtx = "2.10.0"
 activityCompose = "1.12.3"
 composeBom = "2026.01.01"
+facebook = "16.3.0"
 
 nav3Core = "1.0.0"
 nav3Lifecycle = "2.10.0"
@@ -24,6 +25,7 @@ googleid = "1.2.0"
 playServicesAuth = "21.5.0"
 
 [libraries]
+facebook-login = { group = "com.facebook.android", name = "facebook-login", version.ref = "facebook" }
 androidx-compose-material-icons-core = { module = "androidx.compose.material:material-icons-core" }
 androidx-compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }

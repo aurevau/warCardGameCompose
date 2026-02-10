@@ -1,5 +1,6 @@
 package com.example.warcardgamecompose.navigation
 
+import android.app.Activity
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
@@ -13,7 +14,7 @@ import androidx.navigation3.runtime.NavEntry
 import com.example.warcardgamecompose.CPUGameScreen
 import com.example.warcardgamecompose.ChooseGameModeScreen
 import com.example.warcardgamecompose.LoginScreen
-import com.example.warcardgamecompose.LoginUiState
+import androidx.compose.ui.platform.LocalContext
 import com.example.warcardgamecompose.LoginViewModel
 import com.example.warcardgamecompose.MultiplayerGameScreen
 import com.example.warcardgamecompose.ProfileScreen
@@ -27,7 +28,8 @@ import org.koin.androidx.compose.koinViewModel
 @RequiresApi(Build.VERSION_CODES.VANILLA_ICE_CREAM)
 @Composable
 fun NavigationRoot(modifier: Modifier = Modifier) {
-
+    val context = LocalContext.current
+    val activity = context as Activity
     val authViewModel: AuthViewModel = koinViewModel()
     val loginViewModel: LoginViewModel = koinViewModel()
     val uiState by authViewModel.uiState.collectAsStateWithLifecycle()
@@ -61,7 +63,7 @@ fun NavigationRoot(modifier: Modifier = Modifier) {
                         onGuestButtonClick = {backStack.addLast(ChooseGameModeScreenDestination)},
                         onRegisterButtonClick = {backStack.addLast(RegisterDestination)},
                         onGoogleLoginClick = {authViewModel.loginWithGoogle()},
-                        onFacebookLoginClick = {}
+                        onFacebookLoginClick = {authViewModel.loginWithFacebook(activity)}
                     )
 
                 }

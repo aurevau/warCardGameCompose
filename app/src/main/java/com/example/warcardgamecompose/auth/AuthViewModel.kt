@@ -1,5 +1,7 @@
 package com.example.warcardgamecompose.auth
 
+import android.app.Activity
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -55,6 +57,26 @@ class AuthViewModel(private val repository: AuthRepository): ViewModel() {
         _authStatus.value = AuthStatus.LoggedIn
 
     }
+
+    fun loginWithFacebook(activity: Activity) =
+        viewModelScope.launch {
+            Log.d("AUTH", "Facebook login clicked")
+            _uiState.value = AuthUiState.Loading
+
+            try {
+                val result = repository.loginWithFacebook(activity)
+
+                if (result.data != null) {
+                    _uiState.value = AuthUiState.LoginSuccess
+
+                    _authStatus.value = AuthStatus.LoggedIn
+                } else {
+                    _uiState.value = AuthUiState.Error(result.errorMessage ?: "Facebook login failed")
+                }
+            } catch (exception: Exception) {
+                _uiState.value = AuthUiState.Error(exception.message ?: "Facebook error")
+            }
+        }
 
     fun logout() {
        repository.logout()

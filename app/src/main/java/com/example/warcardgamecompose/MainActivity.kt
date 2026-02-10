@@ -1,5 +1,7 @@
 package com.example.warcardgamecompose
 
+import android.app.ComponentCaller
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -13,10 +15,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.warcardgamecompose.auth.AuthRepository
 import com.example.warcardgamecompose.navigation.NavigationRoot
 import com.example.warcardgamecompose.ui.theme.WarCardGameComposeTheme
+import org.koin.android.ext.android.inject
 
 class MainActivity : ComponentActivity() {
+    private val authRepository: AuthRepository by inject()
+
     @RequiresApi(Build.VERSION_CODES.VANILLA_ICE_CREAM)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +37,21 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+
+    @Suppress("DEPRECATION")
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?
+    ) {
+        super.onActivityResult(requestCode, resultCode, data)
+        authRepository.getFacebookCallbackManager()
+            .onActivityResult(requestCode, resultCode, data)
+    }
 }
+
+
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
