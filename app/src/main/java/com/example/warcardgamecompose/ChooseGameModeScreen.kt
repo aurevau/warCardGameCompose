@@ -28,7 +28,7 @@ import com.example.warcardgamecompose.ui.theme.Black
 import com.example.warcardgamecompose.ui.theme.ShootingStar
 import com.example.warcardgamecompose.ui.theme.WarCardGameComposeTheme
 import com.example.warcardgamecompose.ui.theme.White
-import com.example.warcardgamecompose.ui.theme.components.CartoonBox
+import com.example.warcardgamecompose.ui.theme.components.CartoonTextBox
 import com.example.warcardgamecompose.ui.theme.components.StrokeText
 
 @Composable
@@ -103,14 +103,14 @@ fun ChooseGameModeScreen(
 
                 Spacer(modifier = Modifier.height(10.dp))
 
-                CartoonBox("PvP", onClick = { onPvpButtonClick() })
+                CartoonTextBox("PvP", onClick = { onPvpButtonClick() })
                 Spacer(modifier = Modifier.height(16.dp))
 
-                CartoonBox("CPU", onClick = { onCPUButtonClick() })
+                CartoonTextBox("CPU", onClick = { onCPUButtonClick() })
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                CartoonBox("Multiplayer", onClick = { onMultiplayerButtonClick() })
+                CartoonTextBox("Multiplayer", onClick = { onMultiplayerButtonClick() })
 
 
             }

@@ -37,7 +37,7 @@ import com.example.warcardgamecompose.ui.theme.Black
 import com.example.warcardgamecompose.ui.theme.ShootingStar
 import com.example.warcardgamecompose.ui.theme.WarCardGameComposeTheme
 import com.example.warcardgamecompose.ui.theme.White
-import com.example.warcardgamecompose.ui.theme.components.CartoonBox
+import com.example.warcardgamecompose.ui.theme.components.CartoonTextBox
 import com.example.warcardgamecompose.ui.theme.components.StrokeText
 
 @Composable
@@ -118,7 +118,7 @@ fun CPUGameScreen(
                 Spacer(modifier = Modifier.height(50.dp))
 
 
-                CartoonBox("DEAL", onClick = { onDealButtonClick() }, modifier = Modifier.width(200.dp))
+                CartoonTextBox("DEAL", onClick = { onDealButtonClick() }, modifier = Modifier.width(200.dp))
 
                 Spacer(modifier = Modifier.height(60.dp))
 

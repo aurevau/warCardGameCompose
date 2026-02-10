@@ -37,7 +37,7 @@ import com.example.warcardgamecompose.ui.theme.Black
 import com.example.warcardgamecompose.ui.theme.ShootingStar
 import com.example.warcardgamecompose.ui.theme.WarCardGameComposeTheme
 import com.example.warcardgamecompose.ui.theme.White
-import com.example.warcardgamecompose.ui.theme.components.CartoonBox
+import com.example.warcardgamecompose.ui.theme.components.CartoonTextBox
 import com.example.warcardgamecompose.ui.theme.components.StrokeText
 
 @Composable
@@ -87,7 +87,7 @@ fun PvPGameScreen(
 
 
                     Spacer(modifier = Modifier.height(30.dp))
-                    CartoonBox("DEAL", onClick = { onOpponentDealButtonClick() }, modifier = Modifier.width(200.dp))
+                    CartoonTextBox("DEAL", onClick = { onOpponentDealButtonClick() }, modifier = Modifier.width(200.dp))
                     Spacer(modifier = Modifier.height(10.dp))
 
                     StrokeText(
@@ -137,7 +137,7 @@ fun PvPGameScreen(
                 Spacer(modifier = Modifier.height(30.dp))
 
 
-                CartoonBox("DEAL", onClick = { onPlayerDealButtonClick() }, modifier = Modifier.width(200.dp))
+                CartoonTextBox("DEAL", onClick = { onPlayerDealButtonClick() }, modifier = Modifier.width(200.dp))
                 Spacer(modifier = Modifier.height(10.dp))
 
                 StrokeText(

@@ -16,7 +16,7 @@ data object ChooseGameModeScreenDestination: NavKey
 data object CPUGameScreenDestination: NavKey
 
 @Serializable
-data class MultiplayerScreenDestination(val gameId: String): NavKey
+data object MultiplayerScreenDestination: NavKey
 
 @Serializable
 data object PvPGameScreenDestination: NavKey

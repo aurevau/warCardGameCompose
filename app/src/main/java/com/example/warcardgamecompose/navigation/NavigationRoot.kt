@@ -59,7 +59,9 @@ fun NavigationRoot(modifier: Modifier = Modifier) {
                         onEmailChange = loginViewModel::onEmailChange,
                         onPasswordChange = loginViewModel::onPasswordChange,
                         onGuestButtonClick = {backStack.addLast(ChooseGameModeScreenDestination)},
-                        onRegisterButtonClick = {backStack.addLast(RegisterDestination)}
+                        onRegisterButtonClick = {backStack.addLast(RegisterDestination)},
+                        onGoogleLoginClick = {},
+                        onFacebookLoginClick = {}
                     )
 
                 }
@@ -84,7 +86,7 @@ fun NavigationRoot(modifier: Modifier = Modifier) {
                     ChooseGameModeScreen(onExitButtonClick = {backStack.removeLastOrNull()},
                         onCPUButtonClick ={backStack.addLast(CPUGameScreenDestination)},
                         onPvpButtonClick = {backStack.addLast(PvPGameScreenDestination)},
-                        onMultiplayerButtonClick = {})
+                        onMultiplayerButtonClick = {backStack.addLast(MultiplayerScreenDestination)})
 
 
                 }

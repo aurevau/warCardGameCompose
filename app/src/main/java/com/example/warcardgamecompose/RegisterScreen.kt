@@ -25,7 +25,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.warcardgamecompose.ui.theme.WarCardGameComposeTheme
-import com.example.warcardgamecompose.ui.theme.components.CartoonBox
+import com.example.warcardgamecompose.ui.theme.components.CartoonTextBox
 import com.example.warcardgamecompose.ui.theme.components.CartoonTextField
 
 @Composable
@@ -117,7 +117,7 @@ fun RegisterScreen(state: LoginUiState,
 
                 Spacer(modifier = Modifier.height(40.dp))
 
-                CartoonBox("REGISTER", onClick = { onRegisterButtonClick() })
+                CartoonTextBox("REGISTER", onClick = { onRegisterButtonClick() })
 
 
             }
