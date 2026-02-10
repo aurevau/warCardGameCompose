@@ -4,6 +4,10 @@ Android development project, and now that my skills have grown, I am rebuilding 
 and modern Android practices, and scalability. 
 
 **You can look at my developer branch for the latest app updates.**
+**Implemented so far**
+- UI Design for Login and GameScreens.
+- Email & Password login using Firebase Auth.
+- Navigation with Navigation3. 
 
 ## App-Design
 The initial app design was made using Figma: 
