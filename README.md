@@ -4,6 +4,7 @@ Android development project, and now that my skills have grown, I am rebuilding 
 and modern Android practices, and scalability. 
 
 **You can look at my developer branch for the latest app updates.**
+
 **Implemented so far**
 - UI Design for Login and GameScreens.
 - Email & Password login using Firebase Auth.
