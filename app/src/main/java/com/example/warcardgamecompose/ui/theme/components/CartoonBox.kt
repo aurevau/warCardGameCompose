@@ -30,6 +30,7 @@ import kotlin.text.uppercase
 @Composable
 fun CartoonTextBox(
     placeholder: String,
+    enabled: Boolean,
     modifier: Modifier = Modifier,
     onClick: () -> Unit
 ) {

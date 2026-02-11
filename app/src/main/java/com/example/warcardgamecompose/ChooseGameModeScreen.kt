@@ -103,14 +103,14 @@ fun ChooseGameModeScreen(
 
                 Spacer(modifier = Modifier.height(10.dp))
 
-                CartoonTextBox("PvP", onClick = { onPvpButtonClick() })
+                CartoonTextBox("PvP", onClick = { onPvpButtonClick() }, enabled = true)
                 Spacer(modifier = Modifier.height(16.dp))
 
-                CartoonTextBox("CPU", onClick = { onCPUButtonClick() })
+                CartoonTextBox("CPU", onClick = { onCPUButtonClick() }, enabled = true)
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                CartoonTextBox("Multiplayer", onClick = { onMultiplayerButtonClick() })
+                CartoonTextBox("Multiplayer", onClick = { onMultiplayerButtonClick() }, enabled = true)
 
 
             }
