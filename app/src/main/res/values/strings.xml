@@ -16,6 +16,13 @@
     <string name="unknown_destination">Unknown destination</string>
 
     <string name="default_web_client_id">33604769143-liq3qfvook6ld210o0l6kvhis09ilvst.apps.googleusercontent.com</string>
+    <string name="opponent_first_war_card">opponent_first_war_card</string>
+    <string name="opponent_second_war_card">opponent_second_war_card</string>
+    <string name="opponent_third_war_card">opponent_third_war_card</string>
+
+    <string name="player_first_war_card">player_first_war_card</string>
+    <string name="player_second_war_card">player_second_war_card</string>
+    <string name="player_third_war_card">player_third_war_card</string>
 
 
 

@@ -1,7 +1,9 @@
 package com.example.warcardgamecompose.game.presentation
 
+import androidx.compose.ui.geometry.RoundRect
 import androidx.lifecycle.ViewModel
 import com.example.warcardgamecompose.game.domain.Card
+import com.example.warcardgamecompose.game.domain.FinalResult
 import com.example.warcardgamecompose.game.domain.Game
 import com.example.warcardgamecompose.game.domain.GameMode
 import com.example.warcardgamecompose.game.domain.RoundResult
@@ -61,12 +63,12 @@ class CPUGameViewModel: ViewModel() {
         when (result) {
             RoundResult.PLAYER1_WIN -> {
                 game.awardCardsToPlayer1(card1, card2)
-                updateAfterRound("Player 1")
+                updateAfterRound(RoundResult.PLAYER1_WIN)
             }
 
             RoundResult.PLAYER2_WIN -> {
                 game.awardCardsToPlayer2(card1, card2)
-                updateAfterRound("Player 2")
+                updateAfterRound(RoundResult.PLAYER2_WIN)
             }
 
             RoundResult.TIE -> {
@@ -81,17 +83,17 @@ class CPUGameViewModel: ViewModel() {
 
             RoundResult.JOKER_P1 -> {
                 game.handleJokerPlayer1(card1, card2)
-                updateAfterRound("Player 1")
+                updateAfterRound(RoundResult.JOKER_P1)
             }
 
             RoundResult.JOKER_P2 -> {
                 game.handleJokerPlayer2(card1, card2)
-                updateAfterRound("Player 2")
+                updateAfterRound(RoundResult.JOKER_P2)
             }
         }
     }
 
-    private fun updateAfterRound(winner: String) {
+    private fun updateAfterRound(result: RoundResult) {
         val (p1, p2) = game.getPlayers()
         if(game.isGameOver()) {
             val finalWinner = game.getFinalWinner()
@@ -99,7 +101,7 @@ class CPUGameViewModel: ViewModel() {
             _uiState.update {
                 it.copy(
                     status = GameStatus.FINISHED,
-                    finalWinner = finalWinner?.name,
+                    finalWinner = if (finalWinner == p1) FinalResult.PLAYER1 else FinalResult.PLAYER2,
                     isDealEnabled = false,
                     playerDeckSize =  p1.hand.size,
                     opponentDeckSize = p2.hand.size
@@ -107,7 +109,7 @@ class CPUGameViewModel: ViewModel() {
             }
         } else {
             _uiState.update {
-                it.copy(roundWinner = winner,
+                it.copy(roundWinner = result,
                     isDealEnabled = true,
                     status = GameStatus.WAITING_FOR_DEAL,
                     playerDeckSize = p1.hand.size,

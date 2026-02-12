@@ -17,7 +17,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -32,7 +31,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.warcardgamecompose.R
+import com.example.warcardgamecompose.game.domain.FinalResult
 import com.example.warcardgamecompose.game.domain.GameMode
+import com.example.warcardgamecompose.game.domain.RoundResult
 import com.example.warcardgamecompose.game.presentation.CPUGameViewModel
 import com.example.warcardgamecompose.game.presentation.GameStatus
 import com.example.warcardgamecompose.ui.theme.Black
@@ -47,7 +48,9 @@ import org.koin.androidx.compose.koinViewModel
 fun CPUGameScreen(
     viewModel: CPUGameViewModel = koinViewModel(),
     onExitButtonClick: () -> Unit,
-    onGameFinished: (String) -> Unit
+    onWarStarted: () -> Unit,
+    onGameFinished: (FinalResult) -> Unit,
+
 ) {
 
     val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -58,9 +61,14 @@ fun CPUGameScreen(
     }
 
     LaunchedEffect(state.status) {
-        if (state.status == GameStatus.FINISHED && state.finalWinner != null) {
-            onGameFinished(state.finalWinner!!)
+        when(state.status) {
+            GameStatus.FINISHED -> {
+                state.finalWinner?.let(onGameFinished)
+            }
+            GameStatus.WAR -> {onWarStarted()}
+            else -> Unit
         }
+
     }
     Surface(modifier = Modifier.fillMaxSize()) {
         Box(modifier = Modifier
@@ -93,8 +101,19 @@ fun CPUGameScreen(
 
                 Spacer(modifier = Modifier.height(60.dp))
 
-                state.roundWinner?.let {
-                    StrokeText("$it wins the round", fillColor = Color.White, strokeColor = Black, fontSize = 16.sp, fontFamily = ShootingStar)
+                state.roundWinner?.let {result ->
+                    val message = when (result) {
+                        RoundResult.PLAYER1_WIN -> "You win the round"
+                        RoundResult.PLAYER2_WIN -> "CPU wins the round"
+                        RoundResult.JOKER_P1 -> "JOKER! You steal five cards"
+                        RoundResult.JOKER_P2 -> "JOKER! CPU steals five cards"
+                        RoundResult.TIE -> "WAR!"
+                    }
+
+                    if (message.isNotEmpty()){
+                        StrokeText(message, fillColor = Color.White, strokeColor = Black, fontSize = 16.sp, fontFamily = ShootingStar)
+
+                    }
                 }
 
                 Row(modifier = Modifier.fillMaxWidth(),
@@ -171,7 +190,8 @@ fun CPUGameScreenPreview() {
     ) {
         CPUGameScreen(
             onExitButtonClick = {},
-            onGameFinished = {}
+            onGameFinished = {},
+            onWarStarted = {}
         )
     }
 }

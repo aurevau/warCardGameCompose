@@ -21,6 +21,8 @@ import com.example.warcardgamecompose.RegisterScreen
 import com.example.warcardgamecompose.auth.AuthStatus
 import com.example.warcardgamecompose.auth.AuthUiState
 import com.example.warcardgamecompose.auth.AuthViewModel
+import com.example.warcardgamecompose.game.ui.ResultScreen
+import com.example.warcardgamecompose.game.ui.WarScreen
 import org.koin.androidx.compose.koinViewModel
 
 @RequiresApi(Build.VERSION_CODES.VANILLA_ICE_CREAM)
@@ -66,9 +68,11 @@ fun NavigationRoot(modifier: Modifier = Modifier) {
                 }
 
                 is CPUGameScreenDestination -> NavEntry(key) {
-                    CPUGameScreen(onGameFinished = {
+                    CPUGameScreen(onGameFinished = {winner ->
+                        backStack.addLast(ResultScreenDestination(winner))
 
-                    },onExitButtonClick =  { backStack.removeLastOrNull()})
+                    },onExitButtonClick =  { backStack.removeLastOrNull()},
+                        onWarStarted = {backStack.addLast(WarScreenDestination)} )
                 }
                 is RegisterDestination -> NavEntry(key){
                     val loginViewModel: LoginViewModel = koinViewModel()
@@ -117,6 +121,21 @@ fun NavigationRoot(modifier: Modifier = Modifier) {
 
                 is ProfileScreenDestination -> NavEntry(key) {
                     ProfileScreen()
+                }
+
+                is WarScreenDestination -> NavEntry(key) {
+                    WarScreen(
+                        onExitButtonClick ={backStack.removeLastOrNull()},
+                        onWarFinished = {backStack.removeLastOrNull()}
+                    )
+                }
+
+                is ResultScreenDestination -> NavEntry(key) {
+                    ResultScreen(winner = key.winner,
+                        onExitButtonClick = {
+                            backStack.clear()
+                            backStack.addLast(ChooseGameModeScreenDestination)
+                        })
                 }
                 else -> error("Unknown_destination")
             }
