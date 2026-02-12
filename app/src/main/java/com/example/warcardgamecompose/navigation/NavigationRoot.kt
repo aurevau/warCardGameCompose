@@ -10,14 +10,13 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import androidx.navigation3.runtime.NavEntry
-import com.example.warcardgamecompose.CPUGameScreen
+import com.example.warcardgamecompose.game.ui.CPUGameScreen
 import com.example.warcardgamecompose.ChooseGameModeScreen
 import com.example.warcardgamecompose.LoginScreen
-import com.example.warcardgamecompose.LoginUiState
 import com.example.warcardgamecompose.LoginViewModel
-import com.example.warcardgamecompose.MultiplayerGameScreen
+import com.example.warcardgamecompose.game.ui.MultiplayerGameScreen
 import com.example.warcardgamecompose.ProfileScreen
-import com.example.warcardgamecompose.PvPGameScreen
+import com.example.warcardgamecompose.game.ui.PvPGameScreen
 import com.example.warcardgamecompose.RegisterScreen
 import com.example.warcardgamecompose.auth.AuthStatus
 import com.example.warcardgamecompose.auth.AuthUiState
@@ -67,7 +66,9 @@ fun NavigationRoot(modifier: Modifier = Modifier) {
                 }
 
                 is CPUGameScreenDestination -> NavEntry(key) {
-                    CPUGameScreen(onDealButtonClick = {}, onExitButtonClick =  { backStack.removeLastOrNull()})
+                    CPUGameScreen(onGameFinished = {
+
+                    },onExitButtonClick =  { backStack.removeLastOrNull()})
                 }
                 is RegisterDestination -> NavEntry(key){
                     val loginViewModel: LoginViewModel = koinViewModel()

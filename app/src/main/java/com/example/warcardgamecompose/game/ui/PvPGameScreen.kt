@@ -1,4 +1,4 @@
-package com.example.warcardgamecompose
+package com.example.warcardgamecompose.game.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -33,6 +33,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.warcardgamecompose.R
 import com.example.warcardgamecompose.ui.theme.Black
 import com.example.warcardgamecompose.ui.theme.ShootingStar
 import com.example.warcardgamecompose.ui.theme.WarCardGameComposeTheme
@@ -87,7 +88,7 @@ fun PvPGameScreen(
 
 
                     Spacer(modifier = Modifier.height(30.dp))
-                    CartoonTextBox("DEAL", onClick = { onOpponentDealButtonClick() }, modifier = Modifier.width(200.dp))
+                    CartoonTextBox("DEAL", onClick = { onOpponentDealButtonClick() }, modifier = Modifier.width(200.dp), enabled = true)
                     Spacer(modifier = Modifier.height(10.dp))
 
                     StrokeText(
@@ -137,7 +138,7 @@ fun PvPGameScreen(
                 Spacer(modifier = Modifier.height(30.dp))
 
 
-                CartoonTextBox("DEAL", onClick = { onPlayerDealButtonClick() }, modifier = Modifier.width(200.dp))
+                CartoonTextBox("DEAL", onClick = { onPlayerDealButtonClick() }, modifier = Modifier.width(200.dp), enabled = true)
                 Spacer(modifier = Modifier.height(10.dp))
 
                 StrokeText(

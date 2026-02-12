@@ -1,4 +1,4 @@
-package com.example.warcardgamecompose
+package com.example.warcardgamecompose.game.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -32,6 +32,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.warcardgamecompose.R
 import com.example.warcardgamecompose.ui.theme.Black
 import com.example.warcardgamecompose.ui.theme.ShootingStar
 import com.example.warcardgamecompose.ui.theme.WarCardGameComposeTheme
@@ -123,7 +124,7 @@ fun MultiplayerGameScreen(
                         Spacer(Modifier.weight(0.5f))
 
 
-                        CartoonTextBox("DEAL", onClick = { onDealButtonClick() }, modifier = Modifier.width(200.dp))
+                        CartoonTextBox("DEAL", onClick = { onDealButtonClick() }, modifier = Modifier.width(200.dp), enabled = true)
                         Spacer(Modifier.height(10.dp))
 
                     StrokeText(playerUsername, fontSize = 18.sp, fontFamily = ShootingStar, fillColor = White, strokeColor = Black)

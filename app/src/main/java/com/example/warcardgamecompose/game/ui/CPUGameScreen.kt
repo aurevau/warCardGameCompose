@@ -1,4 +1,4 @@
-package com.example.warcardgamecompose
+package com.example.warcardgamecompose.game.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -17,13 +17,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,29 +30,39 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.warcardgamecompose.R
+import com.example.warcardgamecompose.game.domain.GameMode
+import com.example.warcardgamecompose.game.presentation.CPUGameViewModel
+import com.example.warcardgamecompose.game.presentation.GameStatus
 import com.example.warcardgamecompose.ui.theme.Black
 import com.example.warcardgamecompose.ui.theme.ShootingStar
 import com.example.warcardgamecompose.ui.theme.WarCardGameComposeTheme
 import com.example.warcardgamecompose.ui.theme.White
 import com.example.warcardgamecompose.ui.theme.components.CartoonTextBox
 import com.example.warcardgamecompose.ui.theme.components.StrokeText
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun CPUGameScreen(
-    onDealButtonClick: () -> Unit,
-    onExitButtonClick: () -> Unit
+    viewModel: CPUGameViewModel = koinViewModel(),
+    onExitButtonClick: () -> Unit,
+    onGameFinished: (String) -> Unit
 ) {
 
-    var opponentCard by remember { mutableStateOf(R.drawable.back_card) }
-    var playerCard by remember { mutableStateOf(R.drawable.back_card) }
+    val state by viewModel.uiState.collectAsStateWithLifecycle()
 
-    var playerScore by rememberSaveable { mutableStateOf(0) }
-    var opponentScore by rememberSaveable { mutableIntStateOf(0) }
+    LaunchedEffect(Unit) {
+        viewModel.startGame(GameMode.CPU, "player1", "player2")
 
+    }
 
-
+    LaunchedEffect(state.status) {
+        if (state.status == GameStatus.FINISHED && state.finalWinner != null) {
+            onGameFinished(state.finalWinner!!)
+        }
+    }
     Surface(modifier = Modifier.fillMaxSize()) {
-
         Box(modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
@@ -86,10 +93,14 @@ fun CPUGameScreen(
 
                 Spacer(modifier = Modifier.height(60.dp))
 
+                state.roundWinner?.let {
+                    StrokeText("$it wins the round", fillColor = Color.White, strokeColor = Black, fontSize = 16.sp, fontFamily = ShootingStar)
+                }
+
                 Row(modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically) {
-                    Image(painter = painterResource(opponentCard),
+                    Image(painter = painterResource(CardImageMapper.imageFor(state.opponentCard)),
                         modifier = Modifier
                             .align(Alignment.CenterVertically)
                             .height(200.dp),
@@ -98,7 +109,7 @@ fun CPUGameScreen(
                     )
 
                     Spacer(modifier = Modifier.width(20.dp))
-                    Image(painter = painterResource(playerCard),
+                    Image(painter = painterResource(CardImageMapper.imageFor(state.playerCard)),
                         modifier = Modifier
                             .align(Alignment.CenterVertically)
                             .height(200.dp),
@@ -118,7 +129,8 @@ fun CPUGameScreen(
                 Spacer(modifier = Modifier.height(50.dp))
 
 
-                CartoonTextBox("DEAL", onClick = { onDealButtonClick() }, modifier = Modifier.width(200.dp))
+                CartoonTextBox("DEAL", onClick = { viewModel.deal() }, modifier = Modifier.width(200.dp),
+                    enabled = state.isDealEnabled)
 
                 Spacer(modifier = Modifier.height(60.dp))
 
@@ -127,7 +139,7 @@ fun CPUGameScreen(
                 Row(modifier = Modifier.fillMaxSize(), verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.Center) {
                     Column(verticalArrangement = Arrangement.Top, horizontalAlignment = Alignment.CenterHorizontally) {
                         StrokeText("Opponent", fontSize = 18.sp, fontFamily = ShootingStar, fillColor = White, strokeColor = Black)
-                        StrokeText(opponentScore.toString(), fontSize = 40.sp, fontFamily = ShootingStar, fillColor = White, strokeColor = Black)
+                        StrokeText(state.opponentDeckSize.toString(), fontSize = 40.sp, fontFamily = ShootingStar, fillColor = White, strokeColor = Black)
 
 
 
@@ -137,7 +149,7 @@ fun CPUGameScreen(
 
                     Column(verticalArrangement = Arrangement.Top, horizontalAlignment = Alignment.CenterHorizontally) {
                         StrokeText("Player", fontSize = 18.sp, fontFamily = ShootingStar, fillColor = White, strokeColor = Black)
-                        StrokeText(playerScore.toString(), fontSize = 40.sp, fontFamily = ShootingStar, fillColor = White, strokeColor = Black)
+                        StrokeText(state.playerDeckSize.toString(), fontSize = 40.sp, fontFamily = ShootingStar, fillColor = White, strokeColor = Black)
 
 
 
@@ -158,8 +170,8 @@ fun CPUGameScreenPreview() {
         dynamicColor = false
     ) {
         CPUGameScreen(
-            onDealButtonClick = {},
-            onExitButtonClick = {}
+            onExitButtonClick = {},
+            onGameFinished = {}
         )
     }
 }

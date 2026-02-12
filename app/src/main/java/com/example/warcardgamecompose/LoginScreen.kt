@@ -109,11 +109,11 @@ fun LoginScreen(state: LoginUiState,
 
 
 
-        CartoonTextBox("LOGIN", onClick = {onLoginButtonClick()})
+        CartoonTextBox("LOGIN", onClick = {onLoginButtonClick()}, enabled = true)
         Spacer(modifier = Modifier.height(16.dp))
-        CartoonTextBox("REGISTER", onClick = {onRegisterButtonClick()})
+        CartoonTextBox("REGISTER", onClick = {onRegisterButtonClick()}, enabled = true)
         Spacer(modifier = Modifier.height(16.dp))
-        CartoonTextBox("GUEST", onClick = {onGuestButtonClick()})
+        CartoonTextBox("GUEST", onClick = {onGuestButtonClick()}, enabled = true)
         Spacer(modifier = Modifier.height(16.dp))
 
     }

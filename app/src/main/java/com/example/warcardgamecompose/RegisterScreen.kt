@@ -117,7 +117,7 @@ fun RegisterScreen(state: LoginUiState,
 
                 Spacer(modifier = Modifier.height(40.dp))
 
-                CartoonTextBox("REGISTER", onClick = { onRegisterButtonClick() })
+                CartoonTextBox("REGISTER", onClick = { onRegisterButtonClick() }, enabled = true)
 
 
             }
